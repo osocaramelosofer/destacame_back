@@ -6,4 +6,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/passenger/", include(("passengers.api.urls", "buses"), namespace="api_buses")),
     path("api/routes/", include(("routes.api.urls", "routes"), namespace="api_routes")),
+    path("api/buses/", include(("buses.api.urls", "buses"), namespace="api_buses")),
+    path("api/journeys/", include(("journeys.api.urls", "journeys"), namespace="api_journeys")),
 ]
