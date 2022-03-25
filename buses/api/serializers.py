@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
-from passengers.models import Driver
 from passengers.api.serializers import DriverSerializer
-from ..models import Buss
+from routes.api.serializers import RouteSerializer
+from ..models import Buss, BussRoute
 
 
 class BussSerializer(serializers.ModelSerializer):
@@ -12,15 +12,26 @@ class BussSerializer(serializers.ModelSerializer):
         model = Buss
         fields = ['id', 'plate', 'driver']
 
-    def create(self, validated_data):
-        print("Validated data =>", validated_data)
-        driver = validated_data.pop('driver')
-        print('Driver Name =', driver['name'])
-        print('Driver Name =', driver['id'])
-        print("Driver => ", driver)
+    # def create(self, validated_data):
+    #     print("Validated data =>", validated_data)
+    #     driver = validated_data.pop('driver')
+    #     print('Driver Name =', driver['name'])
+    #     print('Driver Name =', driver['id'])
+    #     print("Driver => ", driver)
+    #
+    #     buss_instance = Buss.objects.create(**validated_data)
+    #
+    #
+    #
+    #     return buss_instance
 
-        buss_instance = Buss.objects.create(**validated_data)
 
-        # for driver_data in driver:
+class BussRouteSerializer(serializers.ModelSerializer):
+    route = RouteSerializer() # Origin & destination
+    buss = BussSerializer()
 
-        return buss_instance
+    class Meta:
+        model = BussRoute
+        fields = ['id', 'route', 'buss', 'date', 'time']
+
+

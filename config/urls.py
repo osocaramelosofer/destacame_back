@@ -10,4 +10,6 @@ urlpatterns = [
     path("api/journeys/", include(("journeys.api.urls", "journeys"), namespace="api_journeys")),
 
     path('buses/', include(('buses.urls', 'buses2'), namespace='buses2')),
+    path('passengers/', include(('passengers.urls', 'passengers'), namespace='passengers')),
+
 ]
